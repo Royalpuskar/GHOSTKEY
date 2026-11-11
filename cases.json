@@ -1,0 +1,131 @@
+[
+  {
+    "input": {
+      "events": []
+    },
+    "expected": {
+      "results": [],
+      "stored_plaintext_tokens": false
+    }
+  },
+  {
+    "input": {
+      "events": [
+        {
+          "op": "check",
+          "id": "missing",
+          "audience": "a",
+          "scope": "read",
+          "now": 1
+        }
+      ]
+    },
+    "expected": {
+      "results": [
+        {
+          "id": "missing",
+          "allowed": false
+        }
+      ],
+      "stored_plaintext_tokens": false
+    }
+  },
+  {
+    "input": {
+      "events": [
+        {
+          "op": "issue",
+          "id": "x",
+          "subject": "demo",
+          "audience": "a",
+          "scopes": [
+            "read"
+          ],
+          "expires": 10
+        },
+        {
+          "op": "check",
+          "id": "x",
+          "audience": "a",
+          "scope": "read",
+          "now": 10
+        }
+      ]
+    },
+    "expected": {
+      "results": [
+        {
+          "id": "x",
+          "issued": true
+        },
+        {
+          "id": "x",
+          "allowed": false
+        }
+      ],
+      "stored_plaintext_tokens": false
+    }
+  },
+  {
+    "input": {
+      "events": [
+        {
+          "op": "issue",
+          "id": "demo-credential",
+          "subject": "demo-student",
+          "audience": "research.example",
+          "scopes": [
+            "read"
+          ],
+          "expires": 200
+        },
+        {
+          "op": "check",
+          "id": "demo-credential",
+          "audience": "research.example",
+          "scope": "read",
+          "now": 100
+        },
+        {
+          "op": "check",
+          "id": "demo-credential",
+          "audience": "other.example",
+          "scope": "read",
+          "now": 100
+        },
+        {
+          "op": "revoke",
+          "id": "demo-credential"
+        },
+        {
+          "op": "check",
+          "id": "demo-credential",
+          "audience": "research.example",
+          "scope": "read",
+          "now": 101
+        }
+      ]
+    },
+    "expected": {
+      "results": [
+        {
+          "id": "demo-credential",
+          "issued": true
+        },
+        {
+          "id": "demo-credential",
+          "allowed": true
+        },
+        {
+          "id": "demo-credential",
+          "allowed": false
+        },
+        {
+          "id": "demo-credential",
+          "allowed": false
+        }
+      ],
+      "stored_plaintext_tokens": false
+    }
+  }
+]

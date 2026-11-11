@@ -1,0 +1,21 @@
+{
+  "results": [
+    {
+      "id": "demo-credential",
+      "issued": true
+    },
+    {
+      "id": "demo-credential",
+      "allowed": true
+    },
+    {
+      "id": "demo-credential",
+      "allowed": false
+    },
+    {
+      "id": "demo-credential",
+      "allowed": false
+    }
+  ],
+  "stored_plaintext_tokens": false
+}

@@ -1,0 +1,39 @@
+{
+  "events": [
+    {
+      "op": "issue",
+      "id": "demo-credential",
+      "subject": "demo-student",
+      "audience": "research.example",
+      "scopes": [
+        "read"
+      ],
+      "expires": 200
+    },
+    {
+      "op": "check",
+      "id": "demo-credential",
+      "audience": "research.example",
+      "scope": "read",
+      "now": 100
+    },
+    {
+      "op": "check",
+      "id": "demo-credential",
+      "audience": "other.example",
+      "scope": "read",
+      "now": 100
+    },
+    {
+      "op": "revoke",
+      "id": "demo-credential"
+    },
+    {
+      "op": "check",
+      "id": "demo-credential",
+      "audience": "research.example",
+      "scope": "read",
+      "now": 101
+    }
+  ]
+}
